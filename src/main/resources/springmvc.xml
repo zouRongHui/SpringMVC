@@ -21,7 +21,12 @@
 		<!-- 具体某个拦截器 -->
 		<mvc:interceptor>
 			<!-- 该拦截器拦截的请求 -->
-			<mvc:mapping path="/rone/*"/>
+			<!--
+				* 只支持单层路径
+				** 标识多层路径
+			-->
+			<mvc:mapping path="/**"/><!--所有请求都拦截-->
+			<!--<mvc:mapping path="/rone/*"/>-->
 			<!-- 该拦截器忽略的请求 -->
 			<mvc:exclude-mapping path="/rone/error"/>
 			<!-- 具体的拦截器类，需要实现 org.springframework.web.servlet.HandlerInterceptor -->

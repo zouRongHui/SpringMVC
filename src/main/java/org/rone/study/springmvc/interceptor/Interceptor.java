@@ -22,7 +22,7 @@ public class Interceptor implements HandlerInterceptor {
 		if (seconds % 2 == 0) {
 			return true;
 		} else {
-			arg1.sendRedirect("error");			
+			arg1.sendRedirect("/rone/error");
 			return false;
 		}
 	}
