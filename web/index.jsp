@@ -7,10 +7,13 @@
 <title>SpringMVC</title>
 </head>
 <body>
+
+	<a href="/rone/echarts">ECharts</a>
+	<br/><br/>
 	<a href="rone/helloworld">Hello World</a>
 	<br/><br/>
 	
-	<form action="rone/testMethod" method="post">
+	<form action="/rone/testMethod" method="post">
 		<input type="submit" value="submit"/>
 	</form>
 	<br/><br/>

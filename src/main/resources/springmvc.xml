@@ -12,9 +12,12 @@
 
 	<!-- 配置视图解析器：如何将handler方法返回值解析为实际的物理视图,效果为"prefix"+returnVal+"suffix" -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="prefix" value="/views/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
 	
 	<!-- 设置拦截器 -->
 	<mvc:interceptors>
@@ -25,10 +28,12 @@
 				* 只支持单层路径
 				** 标识多层路径
 			-->
-			<mvc:mapping path="/**"/><!--所有请求都拦截-->
-			<!--<mvc:mapping path="/rone/*"/>-->
+			<!--<mvc:mapping path="/**"/>&lt;!&ndash;所有请求都拦截&ndash;&gt;-->
+			<mvc:mapping path="/rone/*"/>
 			<!-- 该拦截器忽略的请求 -->
 			<mvc:exclude-mapping path="/rone/error"/>
+			<mvc:exclude-mapping path="/rone/echarts"/>
+			<mvc:exclude-mapping path="/rone/downloadPDF"/>
 			<!-- 具体的拦截器类，需要实现 org.springframework.web.servlet.HandlerInterceptor -->
 			<bean class="org.rone.study.springmvc.interceptor.Interceptor" />
 		</mvc:interceptor>
