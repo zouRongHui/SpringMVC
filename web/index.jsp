@@ -8,6 +8,10 @@
 </head>
 <body>
 
+
+	<a href="/rone/downloadFile">下载文件</a>
+	<br/><br/>
+
 	<a href="/rone/echarts">ECharts</a>
 	<br/><br/>
 	<a href="rone/helloworld">Hello World</a>

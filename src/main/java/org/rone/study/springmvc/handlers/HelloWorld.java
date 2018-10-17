@@ -5,13 +5,10 @@ import java.net.URLEncoder;
 import java.util.Date;
 import java.util.Map;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfWriter;
 import org.rone.study.springmvc.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,12 +28,41 @@ import org.rone.study.springmvc.entity.User;
 @Controller
 public class HelloWorld {
 
+	private HelloWorldService service;
+
+	public HelloWorld() {}
+
 	@Autowired
-	HelloWorldService service;
+	public HelloWorld(HelloWorldService service) {
+		this.service = service;
+	}
+
+	/**
+	 * 下载文件
+	 * @param response	相应报文
+	 */
+	@RequestMapping("/downloadFile")
+	public void downloadFile(HttpServletResponse response) throws Exception {
+
+		response.reset();
+		response.setContentType("application/txt;charset=utf-8");
+		response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("下载" + ".txt", "UTF-8"));
+		File file = new File("E:\\fap二次开发.txt");
+		InputStream inputStream = new FileInputStream(file);
+		OutputStream outputStream = response.getOutputStream();
+		byte[] b = new byte[100];
+		while (inputStream.read(b) != -1) {
+			System.out.println(new String(b, "utf-8"));
+			outputStream.write(b);
+		}
+		inputStream.close();
+		outputStream.flush();
+		outputStream.close();
+	}
 
 	/**
 	 * ECharts页面
-	 * @return
+	 * @return	"echarts"
 	 */
 	@RequestMapping("/echarts")
 	public String echartsView() {
@@ -45,48 +71,11 @@ public class HelloWorld {
 
 	/**
 	 * 下载PDF文件
-	 * @return
 	 */
 	@RequestMapping("/downloadPDF")
 	@ResponseBody
 	public void downloadPDF(HttpServletResponse response, String firstBase64Data, String secondBase64Data, String thirdBase64Data, String fourthBase64Data) throws IOException, DocumentException {
 		service.downLoadPDF(response, firstBase64Data, secondBase64Data, thirdBase64Data, fourthBase64Data);
-
-
-
-
-//		response.setContentType("application/x-msdownload");
-//		response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("客户分析报告" + ".pdf", "UTF-8"));
-//		InputStream inputStream = new FileInputStream(new File("E:/itext.pdf"));
-//		byte[] bt = pdfDoc.
-//		ServletOutputStream ouputStream = response.getOutputStream();
-//		byte b[] = new byte[1024];
-//		int n ;
-//		while((n = inputStream.read(b)) != -1){
-//			ouputStream.write(b,0,n);
-//		}
-//		//关闭流、释放资源
-//		ouputStream.close();
-//		inputStream.close();
-
-//		response.setContentType("application/octet-stream");
-//		response.setHeader("Content-Disposition","attachment; filename=" + URLEncoder.encode("统计图" + ".pdf", "UTF-8"));
-//		InputStream input = input = new BufferedInputStream();
-//		OutputStream outputString = new BufferedOutputStream(response.getOutputStream());;
-//
-//		byte [] but = new byte[1024];
-//		while(input.read()!=-1){
-//			int by = input.read(but);
-//			outputString.write(but, 0, by);
-//			outputString.flush();
-//		}
-//
-//
-//		outputString.flush();
-//		input.close();
-//		outputString.close();
-
-//		return "success";
 	}
 	
 	@RequestMapping("/error")

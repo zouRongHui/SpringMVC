@@ -34,6 +34,7 @@
 			<mvc:exclude-mapping path="/rone/error"/>
 			<mvc:exclude-mapping path="/rone/echarts"/>
 			<mvc:exclude-mapping path="/rone/downloadPDF"/>
+			<mvc:exclude-mapping path="/rone/downloadFile"/>
 			<!-- 具体的拦截器类，需要实现 org.springframework.web.servlet.HandlerInterceptor -->
 			<bean class="org.rone.study.springmvc.interceptor.Interceptor" />
 		</mvc:interceptor>
