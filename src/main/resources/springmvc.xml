@@ -17,6 +17,7 @@
 	</bean>
 
 	<mvc:annotation-driven></mvc:annotation-driven>
+	<!--设置静态文件的访问，防止被当错请求处理-->
 	<mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
 	
 	<!-- 设置拦截器 -->
