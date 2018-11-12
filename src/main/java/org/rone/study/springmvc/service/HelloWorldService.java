@@ -8,6 +8,7 @@ import sun.misc.BASE64Decoder;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Base64;
 
 @Service
 public class HelloWorldService {
@@ -15,8 +16,10 @@ public class HelloWorldService {
     private Image base64ToImage(String base64Data) throws IOException, BadElementException {
         //去掉前缀，data:image/png;base64,
         String imageData = (base64Data.split("base64,"))[1];
-        BASE64Decoder decoder = new BASE64Decoder();
-        byte[] data = decoder.decodeBuffer(imageData);
+//        BASE64Decoder decoder = new BASE64Decoder();
+//        byte[] data = decoder.decodeBuffer(imageData);
+        //java1.8中新增了对base64编码的API
+        byte[] data = Base64.getDecoder().decode(imageData);
         for (int i = 0; i < data.length; ++i) {
             if (data[i] < 0) {// 调整异常数据
                 data[i] += 256;
