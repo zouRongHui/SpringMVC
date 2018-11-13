@@ -39,7 +39,11 @@ public class HelloWorldService {
 
         response.reset();
         response.setContentType("application/pdf;charset=utf-8");
-        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("客户分析报告" + ".pdf", "UTF-8"));
+        //下列模式在Firefox中文件名会乱码
+//        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("客户分析报告" + ".pdf", "UTF-8"));
+        //下列模式在chrome和Firefox中实测文件名中文无乱码
+        String fileName = new String("客户分析报告.pdf".getBytes("UTF-8"), "ISO-8859-1");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
         PdfWriter pdfWriter = PdfWriter.getInstance(pdfDoc, response.getOutputStream());
 
         //设置页眉和页脚
