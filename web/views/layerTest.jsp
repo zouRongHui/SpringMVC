@@ -126,5 +126,19 @@
             }
         });
     }
+    //子页面
+    function button10() {
+        layer.open({
+            type: 2,
+            title: '标题',
+            area:['600px','300px'],
+            fixed: false,//是否固定
+            maxmin: true,
+            content: 'url',//子页面url
+            end: function () {
+                //页面关闭后的操作
+            }
+        });
+    }
 </script>
 </html>
