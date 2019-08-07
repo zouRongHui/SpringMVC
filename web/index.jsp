@@ -61,6 +61,7 @@
 		email: <input type="text" name="email"/><br/>
 		province: <input type="text" name="address.province"/><br/>
 		city: <input type="text" name="address.city"/><br/>
+		date: <input type="text" name="date"/><br/>
 		<input type="submit" value="POJO">
 	</form>
 	<br/><br/>
