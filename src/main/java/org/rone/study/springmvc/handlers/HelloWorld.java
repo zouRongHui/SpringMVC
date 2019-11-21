@@ -189,6 +189,9 @@ public class HelloWorld {
 	//运行流程：1.执行@ModelAttribute修饰的方法，将数据置入Map中
 	//			2.SpringMVC从Map中取出对象，并将请求参数赋值给该对象相应的属性
 	//			3.SpringMVC将上诉对象传入目标方法的参数
+	//tips：
+	//	1.多个@ModelAttribute顺序执行
+	//	2.@ModelAttribute不可添加在已有@RequestMapping注解的方法上，不然已有的请求会报404
 	//注意：在@ModelAttribute修饰的方法中，置入Map时键需要和目标方法的参数的类型的小写一致
 	@ModelAttribute
 	public void getUser(@RequestParam(value="username", required=false) String username, Map<String, Object> map) {
