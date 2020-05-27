@@ -19,26 +19,26 @@
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<!--设置静态文件的访问，防止被当错请求处理-->
 	<mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
-	
-	<!-- 设置拦截器 -->
-	<mvc:interceptors>
-		<!-- 具体某个拦截器 -->
-		<mvc:interceptor>
-			<!-- 该拦截器拦截的请求 -->
-			<!--
-				* 只支持单层路径
-				** 标识多层路径
-			-->
-			<!--<mvc:mapping path="/**"/>&lt;!&ndash;所有请求都拦截&ndash;&gt;-->
-			<mvc:mapping path="/rone/*"/>
-			<!-- 该拦截器忽略的请求 -->
-			<mvc:exclude-mapping path="/rone/error"/>
-			<mvc:exclude-mapping path="/rone/echarts"/>
-			<mvc:exclude-mapping path="/rone/downloadPDF"/>
-			<mvc:exclude-mapping path="/rone/downloadFile"/>
-			<!-- 具体的拦截器类，需要实现 org.springframework.web.servlet.HandlerInterceptor -->
-			<bean class="org.rone.study.springmvc.interceptor.Interceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
+
+	<!--&lt;!&ndash; 设置拦截器 &ndash;&gt;-->
+	<!--<mvc:interceptors>-->
+		<!--&lt;!&ndash; 具体某个拦截器 &ndash;&gt;-->
+		<!--<mvc:interceptor>-->
+			<!--&lt;!&ndash; 该拦截器拦截的请求 &ndash;&gt;-->
+			<!--&lt;!&ndash;-->
+				<!--* 只支持单层路径-->
+				<!--** 标识多层路径-->
+			<!--&ndash;&gt;-->
+			<!--&lt;!&ndash;<mvc:mapping path="/**"/>&lt;!&ndash;所有请求都拦截&ndash;&gt;&ndash;&gt;-->
+			<!--<mvc:mapping path="/rone/*"/>-->
+			<!--&lt;!&ndash; 该拦截器忽略的请求 &ndash;&gt;-->
+			<!--<mvc:exclude-mapping path="/rone/error"/>-->
+			<!--<mvc:exclude-mapping path="/rone/echarts"/>-->
+			<!--<mvc:exclude-mapping path="/rone/downloadPDF"/>-->
+			<!--<mvc:exclude-mapping path="/rone/downloadFile"/>-->
+			<!--&lt;!&ndash; 具体的拦截器类，需要实现 org.springframework.web.servlet.HandlerInterceptor &ndash;&gt;-->
+			<!--<bean class="org.rone.study.springmvc.interceptor.Interceptor" />-->
+		<!--</mvc:interceptor>-->
+	<!--</mvc:interceptors>-->
 
 </beans>
